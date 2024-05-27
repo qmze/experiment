@@ -1,0 +1,907 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="https://cliply.co/wp-content/uploads/2021/02/392102850_EARTH_EMOJI_400px.gif">
+        <meta name="description" content="enviro, Built on Creativity, Determination and Inovation.">
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+        <title>Enviro</title>
+    </head>
+    <script>
+
+const showMenu = (toggleId, navId) =>{
+    const toggle = document.getElementById(toggleId),
+    nav = document.getElementById(navId)
+
+    if(toggle && nav){
+        toggle.addEventListener('click', ()=>{
+            nav.classList.toggle('show')
+        })
+    }
+}
+showMenu('nav-toggle','nav-menu')
+
+const navLink = document.querySelectorAll('.nav__link'),
+    navMenu = document.getElementById('nav-menu')  
+
+function linkAction(){
+  navMenu.classList.remove('show')
+}
+navLink.forEach(n => n.addEventListener('click', linkAction));
+
+const sections = document.querySelectorAll('section[id]')
+
+window.addEventListener('scroll', scrollActive)
+
+function scrollActive(){
+    const scrollY = window.pageYOffset
+
+    sections.forEach(current =>{
+        const sectionHeight = current.offsetHeight
+        const sectionTop = current.offsetTop - 50;
+        sectionId = current.getAttribute('id')
+
+        if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
+            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.add('active')
+        }else{
+            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.remove('active')
+        }
+    })
+}
+
+window.onscroll = () => {
+    const nav = document.getElementById('header');
+    if(this.scrollY >= 200) nav.classList.add('scroll-header'); else nav.classList.remove('scroll-header');
+};
+    </script>
+    <style>
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+@media screen and (max-width: 768px) {
+  .home__container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .home__img {
+    width: 30px;
+    text-align: ;
+  }
+
+  .home__data {
+    margin-top: 2rem;
+  }
+}
+
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body.default-cursor {
+    cursor: auto;
+}
+.link:hover {
+    cursor: none;
+}
+body {
+  margin: var(--header-height) 0 0 0;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-medium);
+  color: var(--dark-color);
+  line-height: 1.6;
+  --header-height: 3.5rem;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+  --font-bold: 700;
+  --dark-color: #171717;
+  --dark-color-light: #8a8a8a;
+  --dark-color-lighten: #d1d1d1;
+  --white-color: white;
+  --body-font: 'Poppins';
+  --big-font-size: 1.25rem;
+  --bigger-font-size: 1.5rem;
+  --biggest-font-size: 2rem;
+  --h2-font-size: 1.25rem;
+  --normal-font-size: .938rem;
+  --smaller-font-size: .813rem;
+  --mb-1: .5rem;
+  --mb-2: 1rem;
+  --mb-3: 1.5rem;
+  --mb-4: 2rem;
+  --mb-5: 2.5rem;
+  --mb-6: 3rem;
+  --z-fixed: 100;
+  --rotate-img: rotate(0deg);
+  background-color: #fff;
+  color: black;
+}
+
+h1, h2, h3, p, ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--dark-color);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.section {
+  padding: 5rem 0 2rem;
+}
+
+.section-title {
+  position: relative;
+  font-size: var(--big-font-size);
+  margin-bottom: var(--mb-4);
+  text-align: center;
+  letter-spacing: .1rem;
+}
+
+.section-title::after {
+  position: absolute;
+  content: '';
+  width: 56px;
+  height: 0.18rem;
+  top: -1rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: var(--dark-color);
+}
+
+.grid {
+  max-width: 1024px;
+  display: grid;
+  grid-template-columns: 100%;
+  column-gap: 2rem;
+  width: calc(100% - 2rem);
+  margin-left: var(--mb-2);
+  margin-right: var(--mb-2);
+}
+
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-fixed);
+  background-color: var(--dark-color-lighten);
+}
+
+.nav {
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .nav__menu {
+    position: fixed;
+    top: var(--header-height);
+    left: -100%;
+    width: 70%;
+    height: 100vh;
+    padding: 2rem;
+    background-color: var(--white-color);
+    transition: .5s;
+  }
+}
+
+.nav__item {
+  margin-bottom: var(--mb-4);
+}
+
+.nav__logo {
+  font-weight: var(--font-semi-bold);
+}
+
+.nav__toggle, .nav__shop {
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.show {
+  left: 0;
+}
+
+.active {
+  position: relative;
+}
+
+.active::before {
+  content: '';
+  position: absolute;
+  bottom: -.5rem;
+  left: 45%;
+  width: 4px;
+  height: 4px;
+  background-color: var(--dark-color);
+  border-radius: 50%;
+}
+
+.scroll-header {
+  background-color: var(--white-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.home {
+  background-color: var(--dark-color-lighten);
+  overflow: hidden;
+  padding: 4rem 0;
+}
+
+.home__sneaker {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.home__shape {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+}
+
+.home__img {
+  position: absolute;
+  top: 1.5rem;
+  max-width: initial;
+  width: 275px;
+  transform: var(--rotate-img);
+}
+
+.home__new {
+  display: block;
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-semi-bold);
+  margin-bottom: var(--mb-2);
+}
+
+.home__title {
+  font-size: var(--bigger-font-size);
+  margin-bottom: var(--mb-1);
+}
+
+.home__description {
+  margin-bottom: var(--mb-6);
+}
+
+.button {
+  display: inline-block;
+  background-color: var(--dark-color);
+  color: var(--white-color);
+  padding: 1.125rem 2rem;
+  font-weight: var(--font-medium);
+  border-radius: .5rem;
+  transition: .3s;
+}
+
+.button:hover {
+  transform: translateY(-0.25rem);
+}
+
+.button-light {
+  display: inline-flex;
+  color: var(--dark-color);
+  font-weight: var(--font-bold);
+  align-items: center;
+}
+
+.button-icon {
+  font-size: 1.25rem;
+  margin-left: var(--mb-1);
+  transition: .3s;
+}
+
+.button-light:hover .button-icon {
+  transform: translateX(0.25rem);
+}
+
+.featured__container {
+  row-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.sneaker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: var(--dark-color-lighten);
+  border-radius: .5rem;
+  transition: .4s;
+  overflow: hidden;
+}
+
+.sneaker:hover {
+  height: 100%;
+  transform: translateY(-0.5rem);
+}
+
+.sneaker__sale {
+  position: absolute;
+  left: .5rem;
+  background-color: var(--dark-color);
+  color: var(--white-color);
+  padding: .25rem .5rem;
+  border-radius: .25rem;
+  font-size: var(--h2-font-size);
+  transform: rotate(-90deg);
+  letter-spacing: .1rem;
+}
+
+.sneaker__img {
+  width: 220px;
+  margin-top: var(--mb-3);
+  margin-bottom: var(--mb-6);
+  transform: var(--rotate-img);
+  filter: drop-shadow(0 12px 8px rgba(0, 0, 0, 0.2));
+}
+
+.sneaker__name, .sneaker__preci {
+  font-size: var(--h2-font-size);
+  letter-spacing: .1rem;
+  font-weight: var(--font-bold);
+}
+
+.sneaker__name {
+  margin-bottom: var(--mb-1);
+}
+
+.sneaker__preci {
+  margin-bottom: var(--mb-3);
+}
+
+.sneaker__pages {
+  margin-top: var(--mb-6);
+}
+
+.sneaker__pag {
+  padding: .5rem 1rem;
+  border: 1px solid var(--dark-color);
+  cursor: pointer;
+}
+
+.sneaker__pag:hover {
+  background-color: var(--dark-color);
+  color: var(--white-color);
+}
+
+.collection__container {
+  row-gap: 2rem;
+  justify-content: center;
+}
+
+.collection__card {
+  position: relative;
+  display: flex;
+  height: 328px;
+  background-color: var(--dark-color-lighten);
+  padding: 2rem;
+  border-radius: .5rem;
+  transition: .3s;
+}
+
+.collection__card:hover {
+  transform: translateY(-0.5rem);
+}
+
+.collection__data {
+  align-self: flex-end;
+}
+
+.collection__block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.collection__img {
+    max-width: 100%;
+    height: auto;
+}
+
+.collection__text {
+    margin-top: 10px;
+}
+
+
+.collection__name {
+  font-size: var(--bigger-font-size);
+  margin-bottom: .25rem;
+}
+
+.collection__description {
+  margin-bottom: var(--mb-2);
+}
+
+.product__container {
+  row-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.offer__container {
+  grid-template-columns: 55% 45%;
+  column-gap: 0;
+  background-color: var(--dark-color-lighten);
+  border-radius: .5rem;
+  justify-content: center;
+}
+
+.offer__data {
+  padding: 4rem 0 4rem 1.5rem;
+}
+
+.offer__title {
+  font-size: var(--biggest-font-size);
+  margin-bottom: .25rem;
+}
+
+.offer__description {
+  margin-bottom: var(--mb-3);
+}
+
+.offer__img {
+  width: 153px;
+}
+
+.new__container {
+  row-gap: 2rem;
+}
+
+.new__mens {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--dark-color-lighten);
+  border-radius: .5rem;
+  padding: 2rem;
+}
+
+.new__mens-img {
+  width: 276px;
+  margin-bottom: var(--mb-3);
+}
+
+.new__title {
+  font-size: var(--bigger-font-size);
+  margin-bottom: .25rem;
+}
+
+.new__preci {
+  display: block;
+  margin-bottom: var(--mb-3);
+}
+
+.new__sneaker {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.new__sneaker-card {
+  position: relative;
+  padding: 3.5rem 1.5rem;
+  background-color: var(--dark-color-lighten);
+  border-radius: .5rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.new__sneaker-card:hover .new__sneaker-overlay {
+  bottom: 0;
+}
+
+.new__sneaker-img {
+  width: 220px;
+}
+
+.new__sneaker-overlay {
+  position: absolute;
+  left: 0;
+  bottom: -100%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(138, 138, 138, 0.3);
+  transition: .3s;
+}
+
+/*===== NEWSLETTER =====*/
+.newsletter__container {
+  background-color: var(--dark-color);
+  color: var(--white-color);
+  padding: 2rem .5rem;
+  border-radius: .5rem;
+  text-align: center;
+}
+
+.newsletter__title {
+  font-size: var(--bigger-font-size);
+  margin-bottom: var(--mb-2);
+}
+
+.newsletter__description {
+  margin-bottom: var(--mb-5);
+}
+
+.newsletter__subscribe {
+  display: flex;
+  column-gap: .5rem;
+  background-color: var(--white-color);
+  padding: .5rem;
+  border-radius: .5rem;
+}
+
+.newsletter__input {
+  outline: none;
+  border: none;
+  width: 90%;
+  font-size: var(--normal-font-size);
+}
+
+.newsletter ::placeholder {
+  color: var(--dark-color);
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-semi-bold);
+}
+
+/*===== FOOTER =====*/
+.footer__container {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.footer__box {
+  margin-bottom: var(--mb-4);
+}
+
+.footer__title {
+  font-size: var(--big-font-size);
+  margin-bottom: var(--mb-1);
+}
+
+.footer__link {
+  display: block;
+  width: max-content;
+  margin-bottom: var(--mb-1);
+}
+
+.footer__social {
+  font-size: 1.5rem;
+  margin-right: 1.25rem;
+}
+
+.footer__copy {
+  padding-top: 3rem;
+  font-size: var(--smaller-font-size);
+  color: var(--dark-color-light);
+  text-align: center;
+}
+
+/* ===== MEDIA QUERIES=====*/
+@media screen and (min-width: 576px) {
+  .collection__container {
+    grid-template-columns: 415px;
+  }
+  .collection__img {
+    width: 250px;
+  }
+  .offer__container {
+    grid-template-columns: max-content max-content;
+    column-gap: 3rem;
+  }
+  .offer__data {
+    text-align: center;
+  }
+  .new__mens {
+    align-items: center;
+  }
+  .home__img{
+    width:
+  }
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    margin: 0;
+  }
+  .section {
+    padding: 8rem 0 2rem;
+  }
+  .section-title::after {
+    width: 76px;
+  }
+  .nav {
+    height: calc(var(--header-height) + 1.5rem);
+  }
+  .nav__menu {
+    margin-left: auto;
+  }
+  .nav__list {
+    display: flex;
+  }
+  .nav__item {
+    margin-left: var(--mb-6);
+    margin-bottom: 0;
+  }
+  .nav__toggle {
+    display: none;
+  }
+  .home {
+    padding: 8rem 0;
+  }
+  .home__container {
+    grid-template-columns: max-content max-content;
+    justify-content: center;
+    align-items: center;
+  }
+  .home__sneaker {
+    order: 1;
+  }
+  .home__shape {
+    width: 376px;
+    height: 376px;
+  }
+  .home__img {
+    width: 470px;
+    top: 3.5rem;
+    right: 0;
+    left: -3rem;
+    transform: translateY(-100px);
+
+  }
+  .newsletter__container {
+    grid-template-columns: max-content max-content;
+    justify-content: center;
+    align-items: center;
+    padding: 4.5rem 2rem;
+    column-gap: 3rem;
+  }
+  .newsletter__description {
+    margin-bottom: 0;
+  }
+  .newsletter__subscribe {
+    width: 360px;
+    height: max-content;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .grid {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .home {
+    padding: 10rem 0;
+  }
+  .home__container {
+    column-gap: 8rem;
+  }
+  .collection__container {
+    grid-template-columns: repeat(2, 415px);
+  }
+  .new__container {
+    grid-template-columns: max-content 1fr;
+  }
+  .new__mens {
+    align-items: initial;
+    justify-content: flex-end;
+    padding: 4rem 2rem;
+  }
+  .new__mens-img {
+    margin-bottom: var(--mb-6);
+  }
+}
+.home_image12{
+  transform: translateX(-350px);
+}
+.main_text23{
+  font-size: 3vh;
+}
+    </style>
+    <body>
+
+        <header class="header" id="header">
+            <nav class="nav grid">
+                <div class="main_text23">
+                <a href="#" class="nav__logo">Enviro</a>
+              </div>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
+                        <li class="nav__item"><a href="#featured" class="nav__link">Enviroment</a></li>
+                        <li class="nav__item"><a href="#product" class="nav__link">Sustainablility</a></li>
+                        <li class="nav__item"><a href="#wave" class="nav__link">Biodiversity</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main class="main">
+
+            <section class="home" id="home">
+                <div class="home__container grid">
+                    <div class="home__sneaker">
+                        <div class="home__shape"></div>
+                        <div class="home_image12">
+                        <img src="https://cliply.co/wp-content/uploads/2021/02/392102850_EARTH_EMOJI_400px.gif" alt="" class="home__img">
+                      </div>
+                    </div>
+
+                    <div class="home__data">
+                        <span class="home__new">Presenting</span>
+                        <h1 class="home__title">Enviro <br>  </h1>
+                        <p class="home__description"> Detrmind, Creative, Invsionaries</p>
+                       <a href="https://info..com" class="button">Explore now</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured section" id="featured">
+                <h2 class="section-title">Climate</h2>
+
+                <div class="featured__container grid">
+                    <article class="sneaker">
+                        <img src="https://images.vexels.com/media/users/3/140048/isolated/preview/ab0928c008bbddc7744afcc15da96de2-desk-globe.png" alt="" class="sneaker__img">
+                        <span class="sneaker__name">CO2 Immistions</span>
+                        <span class="sneaker__preci"></span>
+                        <a href="silver" class="button-light">See Now<i class='bx bx-right-arrow-alt button-icon'></i></a>
+                    </article>
+
+                    <article class="sneaker">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3310/3310235.png" alt="" class="sneaker__img">
+                        <span class="sneaker__name">Consiquesnsis</span>
+                        <a href="silver" class="button-light">See Now<i class='bx bx-right-arrow-alt button-icon'></i></a>
+                    </article>
+
+                    <article class="sneaker">
+                        <img src="https://cdn-icons-png.freepik.com/512/3285/3285615.png?uid=R142626397&ga=GA1.1.28163923.1708797321&" alt="" class="sneaker__img">
+                        <span class="sneaker__name">How To Help</span>
+                        <a href="silver" class="button-light">See Now<i class='bx bx-right-arrow-alt button-icon'></i></a>
+                    </article>
+                </div>
+            </section>
+
+            <section class="collection section">
+              <h2 class="section-title">Games</h2>
+                <div class="collection__container grid">
+                    <div class="collection__card">
+                        <div class="collection__data">
+                            <h3 class="collection__text">CO2 Calculator</h3>
+                            <p class="collection__description"></p>
+                            <a href="game.html" class="button-light">See Now <i class='bx bx-right-arrow-alt button-icon'></i></a>
+                        </div>
+
+                        <img src="https://cdn-icons-png.flaticon.com/512/1890/1890036.png" alt="" class="collection__img">
+                    </div>
+
+                    <div class="collection__card">
+                        <div class="collection__data">
+                            <h3 class="collection__name">Hangman</h3>
+                            <p class="collection__description"></p>
+                            <a href="HangMan.html" class="button-light">See Now <i class='bx bx-right-arrow-alt button-icon'></i></a>
+                        </div>
+
+                        <img src="https://cdn-icons-png.flaticon.com/512/806/806131.png" alt="" class="collection__img">
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured section" id="product">
+              <h2 class="section-title">Sustainablility</h2>
+
+              <div class="featured__container grid">
+                  <article class="sneaker">
+                      <img src="https://lordicon.com/icons/wired/flat/456-handshake-deal.svg" alt="" class="sneaker__img">
+                      <span class="sneaker__name">Benifits</span>
+                      <a href="silver" class="button-light">See Now<i class='bx bx-right-arrow-alt button-icon'></i></a>
+                  </article>
+
+                  <article class="sneaker">
+                      <img src="https://cdn-icons-png.flaticon.com/512/4988/4988589.png" alt="" class="sneaker__img">
+                      <span class="sneaker__name">Challanges</span>
+                      <a href="silver" class="button-light">See Now<i class='bx bx-right-arrow-alt button-icon'></i></a>
+                  </article>
+
+                  <article class="sneaker">
+                      <img src="https://cdn-icons-png.flaticon.com/512/4605/4605598.png" alt="" class="sneaker__img">
+                      <span class="sneaker__name">Future</span>
+                      <a href="silver" class="button-light">See Now<i class='bx bx-right-arrow-alt button-icon'></i></a>
+                  </article>
+              </div>
+          </section>
+
+            <section class="featured section" id="wave">
+              <h2 class="section-title">Biodiveristy</h2>
+
+              <div class="featured__container grid">
+                  <article class="sneaker">
+                      <img src="https://cdn-icons-png.flaticon.com/512/5847/5847765.png" alt="" class="sneaker__img">
+                      <span class="sneaker__name">Changes</span>
+                      <a href="silver" class="button-light">See Now<i class='bx bx-right-arrow-alt button-icon'></i></a>
+                  </article>
+
+                  <article class="sneaker">
+                      <img src="https://cdn-icons-png.flaticon.com/256/1536/1536234.png" alt="" class="sneaker__img">
+                      <span class="sneaker__name">Negatives</span>
+                      <a href="silver" class="button-light">See Now<i class='bx bx-right-arrow-alt button-icon'></i></a>
+                  </article>
+
+                  <article class="sneaker">
+                      <img src="https://cdn3.iconfinder.com/data/icons/workspace-stationery/43/book-512.png" alt="" class="sneaker__img">
+                      <span class="sneaker__name">More Info</span>
+                      <a href="silver" class="button-light">See Now<i class='bx bx-right-arrow-alt button-icon'></i></a>
+                  </article>
+              </div>
+          </section>
+          <p class="footer__copy">&#169; 2024 Enviro. All right reserved</p>
+
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+  const elementToBlur = document.querySelector('.white-color');
+elementToBlur.style.filter = 'blur(2px)';
+
+</script>
+</body>
+</html>
+`
